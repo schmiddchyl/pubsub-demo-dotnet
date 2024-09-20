@@ -11,6 +11,9 @@
             config.AddCommand<SubscribeCommand>("sub")
                 .WithDescription("Subscribe to a channel.")
                 .WithExample(new[] { "sub", "channel1", "AblyApiKey" });
+            config.AddCommand<SubscribeCommandEnhanced>("subenhanced")
+                .WithDescription("Subscribe to a channel.")
+                .WithExample(new[] { "subenhanced", "channel1", "AblyApiKey" });    
             config.SetApplicationName("ConsoleChat.exe");
         });
 

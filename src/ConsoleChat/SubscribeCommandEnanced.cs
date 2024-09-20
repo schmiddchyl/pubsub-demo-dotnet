@@ -1,5 +1,5 @@
 using System.Runtime.Serialization.Formatters.Binary;
-public sealed class SubscribeCommand : Command<Settings>
+public sealed class SubscribeCommandEnhanced : Command<Settings>
 {
     private Dictionary<string, string?> clientColors = new Dictionary<string, string?>();
     private record ConsoleMessage(string Name, string Message, string Color);
@@ -46,14 +46,15 @@ public sealed class SubscribeCommand : Command<Settings>
         channel.Subscribe(message =>
         {
             var color = GetColorForClient(message.ClientId);
-            var consoleMessage = new ConsoleMessage(message.ClientId, "message received", color);
-            //var consoleMessage = new ConsoleMessage(message.ClientId, (string)message.Data, color);
-            string filePath = @"C:\test\outputfile.txt";
-             byte[] byteArray = ObjectToByteArray(message.Data);
-            File.WriteAllBytes(filePath, byteArray);
+            //var consoleMessage = new ConsoleMessage(message.ClientId, "message received", color);
+            var consoleMessage = new ConsoleMessage(message.ClientId, (string)message.Data, color);
+            //string filePath = @"C:\test\outputfile.txt";
+             byte[] filbytes = File.ReadAllBytes(@"c:\app.js");
+            // byte[] byteArray = ObjectToByteArray(message.Data);
+            //File.WriteAllBytes(filePath, byteArray);
             consoleMessageQueue.Enqueue(consoleMessage);
-
-
+            var newchannel = ably.Channels.Get("newChannel");
+            var result  =  newchannel.PublishAsync("chat", filbytes);
         
           
 

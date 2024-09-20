@@ -1,0 +1,1 @@
+src\ConsoleChat\bin\Debug\net6.0\ConsoleChat.exe subenhanced mychannel cmkD2g.j0lJ5Q:x6JlvqiujW-If3YrH96ENc0k0ux5aJGKKOdFbGoc6tg

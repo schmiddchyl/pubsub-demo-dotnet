@@ -13,7 +13,7 @@ public sealed class PublishCommand : AsyncCommand<Settings>
         {
             byte[] filbytes = File.ReadAllBytes(@"c:\app.js");
             var text = AnsiConsole.Ask<string>($"[{input.Color}]{input.Name }: [/]");
-            var result  = await channel.PublishAsync("chat", filbytes);
+            var result  = await channel.PublishAsync("chat", text);
             if (result.IsFailure)
             {
                 AnsiConsole.MarkupLine($"[red]{result.Error.Message}[/]");
